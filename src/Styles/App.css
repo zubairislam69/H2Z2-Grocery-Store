@@ -1,0 +1,11 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.routes-container{
+  z-index: -1;
+}
+.App{
+  z-index: 1 !important;
+}

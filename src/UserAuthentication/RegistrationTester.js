@@ -19,7 +19,7 @@ const RegistrationTester = () => {
     });
   
   const onSubmit = (data) => {
-    axios.post("https://h2z2-grocery-store.herokuapp.com/", data).then(() => {
+    axios.post("https://h2z2-grocery-store.herokuapp.com/auth", data).then(() => {
       console.log(data);
     })
 

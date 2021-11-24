@@ -1,22 +1,13 @@
 // About.js will contain the about section
-
-import '../About/About.css';
 import background from '../../images/cityeditted.jpg';
-
-
-import '../About/About.css';
-
 import './About.css';
 //import background from '../images/cityeditted.jpg';
-
-
 
 const About = () => {
     return (
         <div className="about-container">
 
             <img src={background} alt="" />
-            {/*<img src={background} alt=""/>*/}
 
             <div className="about">
                 <h1>About Us</h1>
@@ -46,38 +37,46 @@ const About = () => {
 
             {/*Staff descriptions below*/}
 
-            <div className="huzaifa-img">
-            </div>
+            <div className="huzaifa-img"> </div>
+            
             <div className="huzaifa">
-                <p>Hello, my name is Hanzalah Patel! I am a second year student at Ontario Tech University studying Software engineering. This website was designed as the final project for
-                    my Web Programming class.
+                <p>My name is Huzaifa Zia and I am a second year software engineering student at the time of the production
+                    of this website. I mainly worked on the frontend design of the Home page, Products page, Cart page and
+                    their backend functionalities. I used my previous Web Development knowledge and also learned new technologies
+                    in order to create this website for my final Web Programming project. You can contact me at
+                    <a href="mailto::huzaifa.zia@ontariotechu.net"> huzaifa.zia@ontariotechu.net </a>
+                    or reach me on my
+                    <a href="https://www.linkedin.com/in/huzaifa-zia-86673b206/" target="_blank"> LinkedIn.</a>
                 </p>
             </div>
 
-            <div className="hanzalah-img">
-            </div>
+            <div className="hanzalah-img"> </div>
+            
             <div className="hanzalah">
-                <p>Hello, my name is Hanzalah Patel! I am a second year student at Ontario Tech University studying Software engineering. This website was designed as the final project for
-                    my Web Programming class.
+                <p>My name is Hanzalah Patel. I am a second year student at Ontario Tech University studying
+                    Software Engineering. This website was designed as the final project for my Web Programming class.
                 </p>
             </div>
 
-            <div className="zubair-img">
-            </div>
+            <div className="zubair-img"> </div>
+            
             <div className="zubair">
-                <p>Hello, my name is Hanzalah Patel! I am a second year student at Ontario Tech University studying Software engineering. This website was designed as the final project for
-                    my Web Programming class.
+                <p>My name is Zubair Islam and I am a currently a second year student at Ontario Tech University studying
+                    Software Engineering. This website was designed as the final project for my Web Programming class.
+                    I mainly worked on the user authentication and incorporating its backend functionality.
+                    You can contact me at 
+                    <a href="mailto::zubair.islam@ontariotechu.net"> zubair.islam@ontariotechu.net </a>.
                 </p>
             </div>
 
-            <div className="ziyad-img">
-            </div>
+            <div className="ziyad-img"> </div>
+            
             <div className="ziyad">
-                <p>Hello, my name is Hanzalah Patel! I am a second year student at Ontario Tech University studying Software engineering. This website was designed as the final project for
-                    my Web Programming class.
+                <p>
+                    My name is Ziyad Khan. I am a second year student at Ontario Tech University studying
+                    Software Engineering. This website was designed as the final project for our Web Programming class.
                 </p>
             </div>
-
         </div>
     );
 }

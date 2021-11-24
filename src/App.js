@@ -1,71 +1,83 @@
-import './Styles/App.css';
+//imports
+import './App.css';
 import NavBar from './NavigationBar/NavBar.js'
 import Home from './components/Home/Home.js'
 import About from './components/About/About.js'
 import Contact from './components/Contact/Contact.js'
-import Cart from './CartComponents/Cart/Cart'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-//import SignUpForm from './JavaScript/SignUp/SignUpForm.js'
-//import SignIn from './JavaScript/SignUp/Login.js'
-//import LoginForm from './JavaScript/SignUp/LoginForm.js'
-//import Login from './JavaScript/SignUp/Login.js'
-import RegistrationTester from './UserAuthentication/RegistrationTester';
-import LoginTester from './UserAuthentication/LoginTester';
-import Logout from './UserAuthentication/Logout';
-import { useState, useEffect } from "react";
-import { AuthContext } from './helpers/AuthContext';
-import axios from 'axios';
-import Products from './CartComponents/Products/Products';
-import { connect } from "react-redux";
 import Footer from './components/Footer/webFooter';
-import Profile from './components/Profile/Profile';
+import Cart from './CartComponents/Cart/Cart'
+import Products from './CartComponents/Products/Products';
+import Registration from './UserAuthentication/Registration';
+import Login from './UserAuthentication/Login';
+import { AuthContext } from './helpers/AuthContext';
+
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import axios from 'axios';
 
 const App = ({ current }) => {
+
+  //set default authState as empty
   const [authState, setAuthState] = useState({
     username: "",
     id: 0,
     status: false,
   });
 
+  //get info from website and set accesstoken to local storage
+  useEffect(() => {
+    axios
+      .get("https://h2z2-grocery-store.herokuapp.com/auth/auth", {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        if (response.data.error) {
+          setAuthState({ ...authState, status: false });
+        } else {
+          setAuthState({
+            username: response.data.username,
+            id: response.data.id,
+            status: true,
+          });
+        }
+      });
+  }, []);
+ 
   return (
+    <div className="App">
+      
+      <AuthContext.Provider value={{ authState, setAuthState }}>
+        <Router>
+      
+          {/*prints out current user signed in*/}
+          {authState.status ? (
+            <h1 className="SignInBackground">SIGNED IN AS: {authState.username} </h1>
+          ) : (
+              <>
+              </>
+          )}
 
-
-    <AuthContext.Provider value={{ authState, setAuthState }}>
-      <Router>
-
-        <div className="App">
-
-
-          {/*Navbar Component */}
           <NavBar />
-          <Routes className="routes-container">
+          <Routes className="routes-container">  
             <Route path="/" exact element={<Home />} />
             <Route path="/About" element={<About />} />
-
-            <Route path="/RegistrationTester" element={<RegistrationTester />} />
-            <Route path="/LoginTester" element={<LoginTester />} />
-
-            <Route path="/Logout" element={<Logout />} />
-
-            <Route path="/ContactUs" element={<Contact />} />
-            <Route path="/Cart" element={<Cart />} />
-
-
-            <Route path="/RegistrationTester" element={<RegistrationTester />} />
-            <Route path="/LoginTester" element={<LoginTester />} />
-            <Route path="/profile" element={<Profile />} />
-
+            <Route path="/Registration" element={<Registration />} />
+            <Route path="/Login" element={<Login />} />
             <Route path="/ContactUs" element={<Contact />} />
             <Route path="/Cart" element={<Cart />} />
             <Route path="/Products" element={<Products />} />
           </Routes>
+
           <Footer />
-        </div>
       </Router>
     </AuthContext.Provider>
-
+    </div>
   );
 }
+
 const mapStateToProps = (state) => {
   return {
     current: state.shop.currentItem,
